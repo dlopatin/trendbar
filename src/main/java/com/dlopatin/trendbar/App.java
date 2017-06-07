@@ -17,7 +17,9 @@ public class App {
 		Thread eurUsdProvider = new Thread(new EurUsdQuoteProvider(quotes));
 		eurJpyProvider.start();
 		eurUsdProvider.start();
-		Thread.sleep(130_000);
+		Thread.sleep(70_000);
+		service.unregisterSymbol(Symbol.EURJPY);
+		Thread.sleep(60_000);
 		eurJpyProvider.interrupt();
 		eurUsdProvider.interrupt();
 		service.dispose();

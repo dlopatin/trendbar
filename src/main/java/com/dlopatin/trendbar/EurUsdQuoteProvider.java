@@ -30,7 +30,7 @@ public class EurUsdQuoteProvider implements QouteProvider, Runnable {
 		while (!Thread.currentThread().isInterrupted()) {
 			try {
 				generate();
-				Thread.sleep(250);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}

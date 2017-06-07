@@ -30,8 +30,7 @@ public class InMemmory {
 		return storage
 				.stream()
 				.filter(bar -> bar.getPeriod() == period && bar.getSymbol() == symbol
-					&& from.isBefore(bar.getTimestamp()) && to.isAfter(bar.getTimestamp()))
+					&& from.compareTo(bar.getTimestamp()) <= 0 && to.compareTo(bar.getTimestamp()) >= 0)
 				.collect(Collectors.toList());
 	}
-
 }

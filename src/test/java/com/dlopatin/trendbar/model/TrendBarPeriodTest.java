@@ -21,6 +21,16 @@ public class TrendBarPeriodTest {
 		LocalDateTime now = LocalDateTime.now();
 		long delay = now.getSecond() == 0 ? 0 : 60 - now.getSecond();
 		assertThat(TrendBarPeriod.M1.getDelaySec(),
+				is(both(lessThanOrEqualTo(delay + 1)).and(greaterThanOrEqualTo(delay))));
+	}
+
+	@Test
+	public void testDelaySec_H1_accurateValue() {
+		LocalDateTime now = LocalDateTime.now();
+		long delay = (now.getSecond() == 0 ? 0 : 60 - now.getSecond())
+			+ (now.getMinute() == 0 ? 0 : (59 - now.getMinute()) * 60);
+		assertThat(TrendBarPeriod.H1.getDelaySec(),
 				is(both(lessThanOrEqualTo(delay + 1)).and(greaterThanOrEqualTo(delay - 1))));
 	}
+
 }

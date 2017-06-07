@@ -20,10 +20,6 @@ public class QuoteObserver implements Runnable, Terminable {
 		this.quotes = quotes;
 	}
 
-	public void addQuote(Quote quote) {
-		quotes.add(quote);
-	}
-
 	@Override
 	public void run() {
 		while (running) {
@@ -39,6 +35,7 @@ public class QuoteObserver implements Runnable, Terminable {
 				}
 			} catch (InterruptedException e) {
 				terminate();
+				Thread.currentThread().interrupt();
 			}
 		}
 
